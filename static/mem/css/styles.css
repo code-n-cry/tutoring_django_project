@@ -1,0 +1,60 @@
+/* Основной фон страницы */
+body {
+    background-color: #4CAF50; /* Зеленый цвет фона */
+    color: black; /* Цвет текста */
+    font-family: Arial, sans-serif; /* Шрифт */
+}
+
+/* Заголовки */
+h1, h2, h3, h4, h5, h6 {
+    color: black; /* Белый цвет для заголовков */
+}
+
+.container {
+    max-width: 500px;
+    padding-bottom: 10%;
+}
+
+/* Стили для ссылок */
+a {
+    color: #ffeb3b; /* Желтый цвет для ссылок */
+    text-decoration: none; /* Убираем подчеркивание */
+}
+
+a:hover {
+    text-decoration: underline; /* Подчеркивание при наведении */
+}
+
+/* Стили для кнопок */
+button {
+    background-color: #388E3C; /* Темно-зеленый для кнопок */
+    color: white; /* Белый текст на кнопках */
+    border: none; /* Убираем рамку */
+    padding: 10px 20px; /* Отступы */
+    cursor: pointer; /* Указатель при наведении */
+}
+
+button:hover {
+    background-color: #2e7d32; /* Более темный зеленый при наведении */
+}
+
+/* Пример стилей для разделов */
+section {
+    background-color: rgba(255, 255, 255, 0.2); /* Полупрозрачный фон для секций */
+    padding: 20px; /* Отступы для секций */
+    margin: 20px 0; /* Отступы между секциями */
+}
+
+/* Стили для таблиц */
+table {
+    width: 100%; /* Полная ширина таблицы */
+    border-collapse: collapse; /* Убираем двойные границы */
+}
+
+th, td {
+    border: 1px solid #ffffff; /* Белая граница ячеек */
+    padding: 10px; /* Отступы в ячейках */
+    text-align: left; /* Выравнивание текста */
+}
+
+
