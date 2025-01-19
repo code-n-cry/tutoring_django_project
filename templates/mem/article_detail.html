@@ -2,8 +2,10 @@
 {% include "mem/base.html" %}
 {% block content %}
 <body>
-    <h1>{{ article.title }}</h1>
-    <p>{{ article.content }}</p>
-    <a href="/">Назад к списку статей</a>
+    <div class="container">
+        <h1 align="center">{{ article.title }}</h1>
+        <p>{{ article.content }}</p>
+        <a href="/">Назад к списку статей</a>
+    </div>
 </body>
 {% endblock content %}

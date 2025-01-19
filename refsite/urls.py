@@ -21,14 +21,16 @@ from django.urls import path
 
 from mem import views
 from mem.views import article_detail
+from user.views import views
 from django.conf import settings
 from django.conf.urls.static import static
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.my_view, name='home'),
+    path('', views.IndexView.as_view(), name='home'),
     path('article/<int:article_id>/', article_detail, name='detail'),
+    path('signup/', views.SignUpView.as_view(), name='signup')
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 if settings.DEBUG:

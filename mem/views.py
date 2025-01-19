@@ -1,10 +1,16 @@
 from django.shortcuts import render, get_object_or_404
+from django.views.generic import TemplateView
 from .models import Article
 
 
-def my_view(request):
-    posts = Article.objects.all()
-    return render(request, "mem/index.html", {"posts": posts})
+class IndexView(TemplateView):
+    template_name = "mem/index.html"
+
+    def get(self, request, *args, **kwargs):
+        posts = Article.objects.all()
+        context = self.get_context_data()
+        context.update(posts=posts, **kwargs)
+        return self.render_to_response(context)
 
 
 def home(request):
