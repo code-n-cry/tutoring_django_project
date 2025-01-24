@@ -14,23 +14,24 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from cgitb import handler
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
-from mem import views
-from mem.views import article_detail
-from user.views import views
+from mem.views import article_detail, IndexView
+from user.views import SignUpView
 from django.conf import settings
 from django.conf.urls.static import static
 
 
+app_name = 'refsite'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.IndexView.as_view(), name='home'),
-    path('article/<int:article_id>/', article_detail, name='detail'),
-    path('signup/', views.SignUpView.as_view(), name='signup')
+    path('', include('mem.urls', namespace='mem')),
+    path('signup/', SignUpView.as_view(), name='signup'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 if settings.DEBUG:

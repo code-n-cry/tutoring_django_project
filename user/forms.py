@@ -4,5 +4,13 @@ from user.models import MyUser
 
 class SignUpForm(UserCreationForm):
     class Meta:
-        model = User
-        fields = ('username', 'email', 'password')
+        model = MyUser
+        fields = ("username", "email")
+        labels = {
+            "username": "Юзернейм",
+            "email": "E-mail",
+            MyUser.password.field.name: "Парооль",
+        }
+        help_texts = {
+            "email": "Обязательное поле"
+        }

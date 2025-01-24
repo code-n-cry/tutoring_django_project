@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
+
 import os.path
 import os
 from pathlib import Path
@@ -37,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mem.apps.MemConfig',
-    'user.apps.UserConfig'
+    'user.apps.UserConfig',
 ]
 
 MIDDLEWARE = [
@@ -94,13 +95,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'user.User'
+AUTH_USER_MODEL = 'user.MyUser'
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
+
+DATE_FORMAT = 'd-m-Y'
 
 USE_TZ = True
 

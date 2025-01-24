@@ -2,3 +2,4 @@ django==3.2.17
 flake8==7.1.1
 black==24.10.0
 pillow==11.1.0
+sorl==12.11.0
