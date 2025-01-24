@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from user.models import MyUser
 
 
@@ -14,3 +14,7 @@ class SignUpForm(UserCreationForm):
         help_texts = {
             "email": "Обязательное поле"
         }
+
+
+class LoginForm(AuthenticationForm):
+    pass

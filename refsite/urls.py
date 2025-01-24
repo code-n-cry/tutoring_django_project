@@ -31,7 +31,7 @@ app_name = 'refsite'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('mem.urls', namespace='mem')),
-    path('signup/', SignUpView.as_view(), name='signup'),
+    path('user/', include('user.urls', namespace='user')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 if settings.DEBUG:

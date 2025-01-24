@@ -1,17 +1,17 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, FormView
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
-from django.contrib.auth.forms import AuthenticationForm
-from .forms import SignUpForm
+from .forms import SignUpForm, LoginForm
 
 
-class LoginView(AuthenticationForm):
-    def __init__(self, request, *args, **kwargs):
-        super().__init__(request, *args, **kwargs)
+class LoginView(FormView):
+    template_name = "user/login_form.html"
+    form_class = LoginForm
+    success_url = reverse_lazy("mem:index")
 
 
 class SignUpView(CreateView):
     form_class = SignUpForm
     template_name = "user/sign_up_form.html"
-    success_url = reverse_lazy("mem:index")
+    success_url = reverse_lazy("user:login")

@@ -1,5 +1,5 @@
 {% load static %}
-
+{% csrf_token %}
 <!DOCTYPE html>
 <html lang="ru-RU">
 <head>
@@ -10,6 +10,30 @@
     <link rel="stylesheet" type="text/css" href="{% static "css/styles.css" %}">
 </head>
 <body>
+    <header class="p-3 bg-dark text-white">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cup-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M.11 3.187A.5.5 0 0 1 .5 3h13a.5.5 0 0 1 .488.608l-.22.991a3.001 3.001 0 0 1-1.3 5.854l-.132.59A2.5 2.5 0 0 1 9.896 13H4.104a2.5 2.5 0 0 1-2.44-1.958L.012 3.608a.5.5 0 0 1 .098-.42Zm12.574 6.288a2 2 0 0 0 .866-3.899z"/>
+                  </svg>
+            </a>
+              <ul class="nav col-10 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="/" class="nav-link px-2 text-secondary">Начальная страница</a></li>
+              </ul>
+              {{ request.user.is_authenticated }}
+              {% if not request.user.is_authenticated %}
+                <div class="text-end">
+                  <a href="{% url 'user:login' %}" class="btn btn-outline-light me-2">Вход</a>
+                  <a href="{% url 'user:signup' %}" class="btn btn-success">Регистрация</a>
+                </div>
+              {% else %}
+                 <div class="text-end">
+                   <p class="text-white">{{ user.username }}</p>
+                 </div>
+              {% endif %}
+              
+        </div>
+    </header>
     {% block content %}{% endblock %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
