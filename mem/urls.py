@@ -3,7 +3,7 @@ from operator import index
 from django.urls import path, re_path
 
 
-from .views import IndexView, ArticleDetailView
+from mem.views import IndexView, ArticleDetailView
 
 app_name = "mem"
 

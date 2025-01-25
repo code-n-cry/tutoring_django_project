@@ -19,8 +19,3 @@ class ArticleDetailView(DetailView):
     model = models.Article
     contect_object_name = "article"
     template_name = "mem/article_detail.html"
-
-
-def article_detail(request, article_id):
-    article = get_object_or_404(models.Article, id=article_id)
-    return render(request, "mem/article_detail.html", {"article": article})

@@ -20,14 +20,11 @@ from cgitb import handler
 from django.contrib import admin
 from django.urls import path, include
 
-from mem.views import article_detail, IndexView
-from user.views import SignUpView
 from django.conf import settings
 from django.conf.urls.static import static
 
 
 app_name = 'refsite'
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('mem.urls', namespace='mem')),

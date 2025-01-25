@@ -9,7 +9,7 @@ class SignUpForm(UserCreationForm):
         labels = {
             "username": "Юзернейм",
             "email": "E-mail",
-            MyUser.password.field.name: "Парооль",
+            MyUser.password.field.name: "Пароль",
         }
         help_texts = {
             "email": "Обязательное поле"
