@@ -26,8 +26,14 @@
                   <a href="{% url 'user:signup' %}" class="btn btn-success">Регистрация</a>
                 </div>
               {% else %}
-                 <div class="text-end">
-                   <p class="text-white">{{ user.username }}</p>
+                 <div class="text-end dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {{ user.username }}
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="#">Профиль</a>
+                      <a class="dropdown-item" href="{% url 'user:logout' %}">Выйти</a>
+                    </div>
                  </div>
               {% endif %}
               

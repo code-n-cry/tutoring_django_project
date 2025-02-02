@@ -2,7 +2,8 @@ from django.views.generic import FormView
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 from .forms import SignUpForm, LoginForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import redirect
 
 
 class LoginView(FormView):
@@ -22,3 +23,8 @@ class SignUpView(CreateView):
     form_class = SignUpForm
     template_name = "user/sign_up_form.html"
     success_url = reverse_lazy("user:login")
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('/')

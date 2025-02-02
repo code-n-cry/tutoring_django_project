@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% csrf_token %}
+{% block title %}<title>Профиль</title>{% endblock %}
+
+{% block content %}
+{% if request.user.is_authenticated %}
+
+
+{% else %}
+    <div class="container">
+        <h2 align="center">Кажется, вы кое-что забыли...</h2>
+        <a href="{% url 'user:login' %}" class="btn btn-outline-light me-2">Войти</a>
+        <a href="{% url 'user:signup' %}" class="btn btn-success">Зарегистрироваться</a>
+    </div>
+
+{% endif %}

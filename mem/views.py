@@ -19,3 +19,7 @@ class ArticleDetailView(DetailView):
     model = models.Article
     contect_object_name = "article"
     template_name = "mem/article_detail.html"
+
+
+class ArticleCreateView:
+    pass
