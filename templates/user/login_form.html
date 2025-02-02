@@ -4,11 +4,11 @@
 
 {% block content %}
 <h2 align="center">Вход</h2>
-<div class="container">
+<div class="container d-flex align-items-center justify-content-center">
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Войти</button>
   </form>
-<div>
+</div>
 {% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}<title>Изменение</title>{% endblock %}
+{% block content %}
+{% if request.user.is_authenticated %}
+    <h2 align="center">Изменение детальной информации</h2>
+    <div class="container d-flex align-items-center justify-content-centerr">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+    </div>
+{% else %}
+    <h2 align="center">Менять нечего - мы даже не знаем, кто вы</h2>
+    <div class="d-flex align-items-center justify-content-center">
+        <a href="{% url 'user:login' %}" class="btn btn-outline-light me-2">Войти</a>
+        <a href="{% url 'user:signup' %}" class="btn btn-success">Зарегистрироваться</a>
+    </div>
+{% endif %}
+{% endblock %}

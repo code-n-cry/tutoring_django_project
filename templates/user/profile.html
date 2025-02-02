@@ -1,16 +1,33 @@
 {% extends 'base.html' %}
-{% csrf_token %}
 {% block title %}<title>Профиль</title>{% endblock %}
 
 {% block content %}
 {% if request.user.is_authenticated %}
-
-
+    <div class ="container">
+        <h2 align="center">Здравствуйте, {{ user.username }}! Вот ваш профиль:</h2>
+        <div class="container d-flex align-items-center justify-content-center">
+            <h3>Ваш email: {{ request.user.email }}</h3>
+        </div>
+        <div class="container d-flex align-items-center justify-content-center">
+            <h3>Детальнее о вас:</h3>
+            {% if request.user.detail %}
+                <h3> {{ request.user.detail }}</h3>
+            {% else %}
+                <h3> Мы пока не знаем...</h3>
+            {% endif %}
+        </div>
+        <div class="container d-flex align-items-center justify-content-center">
+            <a href="{% url 'user:change' %}" class="btn btn-success">Изменить информацию о себе</a>
+        </div>
+    </div>
 {% else %}
     <div class="container">
         <h2 align="center">Кажется, вы кое-что забыли...</h2>
-        <a href="{% url 'user:login' %}" class="btn btn-outline-light me-2">Войти</a>
-        <a href="{% url 'user:signup' %}" class="btn btn-success">Зарегистрироваться</a>
+        <div class="d-flex align-items-center justify-content-center">
+            <a href="{% url 'user:login' %}" class="btn btn-outline-light me-2">Войти</a>
+            <a href="{% url 'user:signup' %}" class="btn btn-success">Зарегистрироваться</a>
+        </div>
     </div>
 
 {% endif %}
+{% endblock %}

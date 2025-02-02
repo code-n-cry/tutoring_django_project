@@ -1,4 +1,5 @@
 from django.db import models
+from user.models import MyUser
 from PIL import Image
 from django.core.files.base import ContentFile
 from io import BytesIO
@@ -31,6 +32,7 @@ class Article(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
     image = models.ImageField(upload_to="home_images/", null=True, blank=True)
+    author = models.ForeignKey(MyUser, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.title

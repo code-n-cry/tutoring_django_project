@@ -1,7 +1,7 @@
-from django.views.generic import FormView
+from django.views.generic import FormView, TemplateView
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
-from .forms import SignUpForm, LoginForm
+from .forms import SignUpForm, LoginForm, ProfileForm
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
 
@@ -25,8 +25,13 @@ class SignUpView(CreateView):
     success_url = reverse_lazy("user:login")
 
 
-class ProfileView
+class ProfileView(TemplateView):
+    template_name = "user/profile.html"
 
+
+class ChangeView(FormView):
+    template_name = "user/change.html"
+    form_class = None
 
 
 def logout_view(request):
