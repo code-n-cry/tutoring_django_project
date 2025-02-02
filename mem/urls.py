@@ -1,6 +1,4 @@
-from operator import index
-
-from django.urls import path, re_path
+from django.urls import path
 
 
 from mem.views import IndexView, ArticleDetailView
