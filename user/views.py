@@ -1,7 +1,7 @@
 from django.views.generic import FormView, TemplateView
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
-from .forms import SignUpForm, LoginForm, ProfileForm
+from .forms import SignUpForm, LoginForm
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
 

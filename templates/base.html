@@ -20,7 +20,7 @@
               <ul class="nav col-10 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="/" class="nav-link px-2 text-secondary">Начальная страница</a></li>
                 {% if request.user.is_authenticated %}
-                  <li><a href="/" class="nav-link px-2 text-secondary">Создать статью</a></li>
+                  <li><a href="{% url 'mem:create' %}" class="nav-link px-2 text-secondary">Создать статью</a></li>
                 {% endif %}
               </ul>
               {% if not request.user.is_authenticated %}

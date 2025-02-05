@@ -18,8 +18,14 @@ def resize_image(image_field, max_width=800):
     return image_field
 
 
-class MyModel(models.Model):
-    image = models.ImageField(upload_to="images/")
+class Article(models.Model):
+    title = models.CharField(max_length=200, verbose_name='Заголовок')
+    content = models.TextField(verbose_name='Содержание', null=False)
+    image = models.ImageField(upload_to="home_images/", null=True, blank=True)
+    author = models.ForeignKey(MyUser, null=True, on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return self.title
 
     def save(self, *args, **kwargs):
         if self.image:
@@ -27,12 +33,6 @@ class MyModel(models.Model):
             self.image.save(self.image.name, new_image, save=False)
         super().save(*args, **kwargs)
 
-
-class Article(models.Model):
-    title = models.CharField(max_length=200)
-    content = models.TextField()
-    image = models.ImageField(upload_to="home_images/", null=True, blank=True)
-    author = models.ForeignKey(MyUser, null=True, on_delete=models.SET_NULL)
-
-    def __str__(self):
-        return self.title
+    class Meta:
+        verbose_name = 'Статья'
+        verbose_name_plural = 'Статьи'

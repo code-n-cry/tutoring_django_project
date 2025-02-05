@@ -1,7 +1,6 @@
-from django.http import Http404
-from django.shortcuts import render, get_object_or_404
-from django.views.generic import TemplateView, DetailView
-
+from django.views.generic import TemplateView, DetailView, CreateView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from mem import models
 
 
@@ -21,5 +20,18 @@ class ArticleDetailView(DetailView):
     template_name = "mem/article_detail.html"
 
 
-class ArticleCreateView:
-    pass
+class ArticleCreateView(LoginRequiredMixin, CreateView):
+    model = models.Article
+    fields = ["title", "content"]
+    template_name = "mem/article_create.html"
+    success_url = "/"
+
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super(ArticleCreateView, self).form_valid(form)

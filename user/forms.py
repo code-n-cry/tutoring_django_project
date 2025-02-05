@@ -19,16 +19,3 @@ class SignUpForm(UserCreationForm):
 
 class LoginForm(AuthenticationForm):
     pass
-
-
-class ProfileForm(UserChangeForm):
-    password = None
-
-    class Meta:
-        model = MyUser
-        fields = ['username', 'email', 'detail']
-        widgets = {
-            'description': Textarea(attrs={'rows': 3}),
-            'username': TextInput(),
-            'email': TextInput()
-        }

@@ -107,6 +107,8 @@ DATE_FORMAT = 'd-m-Y'
 
 USE_TZ = True
 
+LOGIN_REDIRECT_URL = '/user/login'
+LOGIN_URL = '/user/login'
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
