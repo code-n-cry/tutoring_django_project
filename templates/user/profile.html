@@ -17,7 +17,7 @@
             {% endif %}
         </div>
         <div class="container d-flex align-items-center justify-content-center">
-            <a href="{% url 'user:change' %}" class="btn btn-success">Изменить информацию о себе</a>
+            <a href="{% url 'user:change' request.user.id %}" class="btn btn-success">Изменить информацию о себе</a>
         </div>
     </div>
 {% else %}

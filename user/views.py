@@ -1,9 +1,11 @@
-from django.views.generic import FormView, TemplateView
+from django.views.generic import FormView, TemplateView, CreateView, UpdateView
 from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView
-from .forms import SignUpForm, LoginForm
+from user.forms import SignUpForm, LoginForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
+from user.models import MyUser
+from django.core.exceptions import PermissionDenied
 
 
 class LoginView(FormView):
@@ -29,9 +31,17 @@ class ProfileView(TemplateView):
     template_name = "user/profile.html"
 
 
-class ChangeView(FormView):
+class ChangeView(LoginRequiredMixin, UpdateView):
     template_name = "user/change.html"
-    form_class = None
+    fields = ["detail"]
+    model = MyUser
+    success_url = '/user/profile'
+
+    def get(self, request, *args, **kwargs):
+        if int(self.request.get_full_path().split('/')[-1]) == request.user.pk:
+            self.object = request.user
+            return super().get(request, *args, **kwargs)
+        raise PermissionDenied
 
 
 def logout_view(request):

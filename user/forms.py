@@ -1,5 +1,4 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm
-from django.forms import Textarea, TextInput
 from user.models import MyUser
 
 

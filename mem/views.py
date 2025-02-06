@@ -1,5 +1,4 @@
 from django.views.generic import TemplateView, DetailView, CreateView
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from mem import models
 
