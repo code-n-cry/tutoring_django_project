@@ -1,4 +1,4 @@
-from django.views.generic import FormView, TemplateView, CreateView, UpdateView
+from django.views.generic import FormView, TemplateView, CreateView, UpdateView, DetailView
 from django.urls import reverse_lazy
 from user.forms import SignUpForm, LoginForm
 from django.contrib.auth import authenticate, login, logout
@@ -29,6 +29,12 @@ class SignUpView(CreateView):
 
 class ProfileView(TemplateView):
     template_name = "user/profile.html"
+
+
+class AboutView(DetailView):
+    template_name = "user/detail.html"
+    context_object_name = "user"
+    model = MyUser
 
 
 class ChangeView(LoginRequiredMixin, UpdateView):

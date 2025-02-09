@@ -1,0 +1,15 @@
+{% include "base.html" %}
+{% block content %}
+<body>
+    <div class="container">
+        <h2 align="center">Изменение статьи</h2>
+        <div class="container d-flex align-items-center justify-content-center">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Изменить</button>
+            </form>
+        </div> 
+    </div>
+</body>
+{% endblock content %}

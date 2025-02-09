@@ -1,0 +1,33 @@
+{% include 'base.html' %}
+{% csrf_token %}
+
+<body>
+{% block content %}
+  <h1 align="center">Ваши статьи:</h1>
+  <ul>
+    {% if posts %}
+        {% for post in posts %}
+            <div class="container">
+            <li>
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.content }}</p>
+                <p><a href="{% url 'mem:detail' post.id %}">Подробнее</a></p>
+                <div class="d-flex align-items-center justify-content-left">
+                    <p><a class="btn btn-primary m-1" href="{% url 'mem:edit' post.id %}" role="button">Изменить</a></p>
+                    <form method="POST" action="{% url 'mem:delete' post.id %}">
+                        {% csrf_token %}<input class="btn btn-danger m-1" type="submit" value="Удалить">
+                     </form>
+                </div>
+            </li>
+            </div>
+        {% endfor %}
+    
+    {% else %}
+        <h2 align="center">Вы пока не написали ничего. Может, попробуете?</h2>
+        <div class="d-flex align-items-center justify-content-center">
+            <p><a class="btn btn-primary m-1" href="{% url 'mem:create'%}">Создать статью</a></p>
+        </div>
+    {% endif %}
+    </ul>
+{% endblock %}
+</body>

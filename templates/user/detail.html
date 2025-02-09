@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}<title>О пользователе</title>{% endblock %}
+
+{% block content %}
+
+    <div class ="container">
+        <h2 align="center">Вот информация о пользователе {{ user.username }}:</h2>
+        <div class="container d-flex align-items-center justify-content-center">
+            <h3>Email: {{ user.email }}</h3>
+        </div>
+        <div class="container d-flex align-items-center justify-content-center">
+            <h3>Детальнее о вас:</h3>
+            {% if user.detail %}
+                <h3> {{ user.detail }}</h3>
+            {% else %}
+                <h3> Мы пока не знаем...</h3>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
