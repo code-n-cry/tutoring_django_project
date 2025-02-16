@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.templatetags.static import static
-import sorl
+
+# from sorl.thumbnail import  get_thumbnail
 import time
 
 
@@ -12,7 +13,9 @@ def avatar_image_path(instance, filename):
 class MyUser(AbstractUser):
     avatar = models.ImageField(
         upload_to=avatar_image_path,
-
+        null=True,
+        blank=True,
+        verbose_name="Аватарка",
     )
     detail = models.TextField(
         null=True,
@@ -29,9 +32,9 @@ class MyUser(AbstractUser):
     def __str__(self):
         return self.username
 
-    def get_avatar_300x300(self):
+    '''def get_avatar_300x300(self):
         if self.avatar:
-            return sorl.thumbnail.get_thumbnail(
+            return get_thumbnail(
                 self.avatar, '300x300', crop='center', quality=65
             )
-        return {'url': static('img/avatar_default.jpg')}
+        return {'url': static('img/avatar_default.jpg')}'''

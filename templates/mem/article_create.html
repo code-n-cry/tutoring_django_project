@@ -5,7 +5,7 @@
         {% if request.user.is_authenticated %}
             <h2 align="center">Создание статьи:</h2>
             <div class="container d-flex align-items-center justify-content-center">
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form.as_p }}
                     <button type="submit">Создать</button>

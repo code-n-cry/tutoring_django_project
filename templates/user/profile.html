@@ -8,6 +8,11 @@
         <div class="container d-flex align-items-center justify-content-center">
             <h3>Ваш email: {{ request.user.email }}</h3>
         </div>
+        {% if request.user.avatar %}
+            <div class="container d-flex align-items-center justify-content-center">
+                <img src="{{ request.user.avatar.url }}">
+            </div>
+        {% endif %}
         <div class="container d-flex align-items-center justify-content-center">
             <h3>Детальнее о вас:</h3>
             {% if request.user.detail %}

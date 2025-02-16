@@ -1,4 +1,10 @@
-from django.views.generic import FormView, TemplateView, CreateView, UpdateView, DetailView
+from django.views.generic import (
+    FormView,
+    TemplateView,
+    CreateView,
+    UpdateView,
+    DetailView,
+)
 from django.urls import reverse_lazy
 from user.forms import SignUpForm, LoginForm
 from django.contrib.auth import authenticate, login, logout
@@ -14,8 +20,11 @@ class LoginView(FormView):
     success_url = reverse_lazy("mem:index")
 
     def post(self, request, *args, **kwargs):
-        user = authenticate(request, username=request.POST["username"],
-                            password=request.POST["password"])
+        user = authenticate(
+            request,
+            username=request.POST["username"],
+            password=request.POST["password"],
+        )
         if user:
             login(request, user)
         return super().post(request, *args, **kwargs)
@@ -39,7 +48,7 @@ class AboutView(DetailView):
 
 class ChangeView(LoginRequiredMixin, UpdateView):
     template_name = "user/change.html"
-    fields = ["detail"]
+    fields = ["detail", "avatar"]
     model = MyUser
     success_url = '/user/profile'
 

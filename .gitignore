@@ -129,7 +129,7 @@ dmypy.json
 .pyre/
 
 node_modules
-static_dev/css/tailwind-output.css
-media/
 .vscode/
 .vscode
+django-vs.code-workspace
+.idea/

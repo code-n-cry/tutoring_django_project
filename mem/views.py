@@ -1,4 +1,10 @@
-from django.views.generic import TemplateView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import (
+    TemplateView,
+    DetailView,
+    CreateView,
+    UpdateView,
+    DeleteView,
+)
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 from mem import models
@@ -27,11 +33,13 @@ class MyArticles(LoginRequiredMixin, TemplateView):
 class ArticleUpdateView(LoginRequiredMixin, UpdateView):
     template_name = "mem/article_update.html"
     success_url = "/my"
-    fields = ["title", "content"]
+    fields = ["title", "content", "image"]
     model = models.Article
 
     def get(self, request, *args, **kwargs):
-        current_post = models.Article.objects.filter(id=int(self.request.get_full_path().split('/')[-2])).first()
+        current_post = models.Article.objects.filter(
+            id=int(self.request.get_full_path().split('/')[-2])
+        ).first()
         if current_post.author.pk == request.user.pk:
             self.object = current_post
             return super().get(request, *args, **kwargs)
@@ -46,7 +54,9 @@ class ArticleDeleteView(LoginRequiredMixin, DeleteView):
         return self.post(*args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        current_post = models.Article.objects.filter(id=int(self.request.get_full_path().split('/')[-2])).first()
+        current_post = models.Article.objects.filter(
+            id=int(self.request.get_full_path().split('/')[-2])
+        ).first()
         if current_post.author.pk == request.user.pk:
             return super().post(request, *args, **kwargs)
         raise PermissionDenied
@@ -60,7 +70,7 @@ class ArticleDetailView(DetailView):
 
 class ArticleCreateView(LoginRequiredMixin, CreateView):
     model = models.Article
-    fields = ["title", "content"]
+    fields = ["title", "content", "image"]
     template_name = "mem/article_create.html"
     success_url = "/my"
 

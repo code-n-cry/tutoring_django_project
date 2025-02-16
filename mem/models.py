@@ -5,13 +5,12 @@ from django.core.files.base import ContentFile
 from io import BytesIO
 
 
-def resize_image(image_field, max_width=800):
+def resize_image(image_field, max_width=300):
     img = Image.open(image_field)
     if img.width > max_width:
         ratio = max_width / img.width
         new_height = int(img.height * ratio)
         img = img.resize((max_width, new_height))
-
         buffer = BytesIO()
         img.save(buffer, format="JPEG")
         return ContentFile(buffer.getvalue())
@@ -21,7 +20,12 @@ def resize_image(image_field, max_width=800):
 class Article(models.Model):
     title = models.CharField(max_length=200, verbose_name='Заголовок')
     content = models.TextField(verbose_name='Содержание', null=False)
-    image = models.ImageField(upload_to="home_images/", null=True, blank=True)
+    image = models.ImageField(
+        upload_to="home_images/",
+        null=True,
+        blank=True,
+        verbose_name="Картинка",
+    )
     author = models.ForeignKey(MyUser, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):

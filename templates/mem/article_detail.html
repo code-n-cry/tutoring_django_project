@@ -5,6 +5,9 @@
     <div class="container">
         <h1 align="center">{{ article.title }}</h1>
         <p>{{ article.content }}</p>
+        {% if article.image %}
+            <img src="{{article.image.url}}" class="img-thumbnail">
+        {% endif %}
         <a href="/">Назад к списку статей</a>
     </div>
 </body>
