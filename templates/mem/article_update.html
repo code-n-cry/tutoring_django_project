@@ -4,7 +4,7 @@
     <div class="container">
         <h2 align="center">Изменение статьи</h2>
         <div class="container d-flex align-items-center justify-content-center">
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button type="submit">Изменить</button>

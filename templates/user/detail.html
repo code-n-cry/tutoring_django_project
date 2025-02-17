@@ -10,7 +10,9 @@
         </div>
         {% if request.user.avatar %}
             <div class="container d-flex align-items-center justify-content-center">
-                <img src="{{ request.user.avatar.url }}">
+                <div class="col-md-4 px-0">
+                    <img src="{{ user.avatar.url }}" class="img-fluid">
+                </div>
             </div>
         {% endif %}
         <div class="container d-flex align-items-center justify-content-center">
