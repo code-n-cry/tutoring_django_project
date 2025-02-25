@@ -8,7 +8,7 @@
         <div class="container d-flex align-items-center justify-content-center">
             <h3>Email: {{ user.email }}</h3>
         </div>
-        {% if request.user.avatar %}
+        {% if user.avatar %}
             <div class="container d-flex align-items-center justify-content-center">
                 <div class="col-md-4 px-0">
                     <img src="{{ user.avatar.url }}" class="img-fluid">
@@ -16,7 +16,7 @@
             </div>
         {% endif %}
         <div class="container d-flex align-items-center justify-content-center">
-            <h3>Детальнее о вас:</h3>
+            <h3>Детальнее:</h3>
             {% if user.detail %}
                 <h3> {{ user.detail }}</h3>
             {% else %}

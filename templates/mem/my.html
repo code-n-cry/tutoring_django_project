@@ -12,7 +12,9 @@
                 <h2>{{ post.title }}</h2>
                 <p>{{ post.content }}</p>
                 {% if post.image %}
-                    <img src="{{ post.image.url }}" class="img-thumbnail mw-30">
+                    <div class="col-md-4 px-0">
+                        <img src="{{ post.image.url }}" class="img-thumbnail mw-30">
+                    </div>
                 {% endif %}
                 <p><a href="{% url 'mem:detail' post.id %}">Подробнее</a></p>
                 <div class="d-flex align-items-center justify-content-left">
