@@ -27,7 +27,9 @@ class Article(models.Model):
         blank=True,
         verbose_name="Картинка",
     )
-    author = models.ForeignKey(get_user_model(), null=True, on_delete=models.SET_NULL)
+    author = models.ForeignKey(
+        get_user_model(), null=True, on_delete=models.SET_NULL
+    )
 
     def __str__(self):
         return self.title

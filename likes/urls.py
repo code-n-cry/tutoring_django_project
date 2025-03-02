@@ -1,6 +1,6 @@
 from django.urls import path
 
-from likes.views import LikeView, DislikeView, GetLikesPerArticle
+from likes.views import DislikeView, GetLikesPerArticle, LikeView
 
 app_name = "likes"
 

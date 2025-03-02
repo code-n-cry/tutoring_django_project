@@ -1,7 +1,13 @@
 from django.urls import path
 
-from mem.views import (ArticleCreateView, ArticleDeleteView, ArticleDetailView,
-                       ArticleUpdateView, IndexView, MyArticles)
+from mem.views import (
+    ArticleCreateView,
+    ArticleDeleteView,
+    ArticleDetailView,
+    ArticleUpdateView,
+    IndexView,
+    MyArticles,
+)
 
 app_name = "mem"
 

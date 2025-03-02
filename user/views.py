@@ -3,8 +3,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import (CreateView, DetailView, FormView,
-                                  TemplateView, UpdateView)
+from django.views.generic import (
+    CreateView,
+    DetailView,
+    FormView,
+    TemplateView,
+    UpdateView,
+)
 
 from user.forms import LoginForm, SignUpForm
 from user.models import MyUser
