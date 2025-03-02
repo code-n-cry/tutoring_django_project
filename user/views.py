@@ -46,7 +46,7 @@ class ChangeView(LoginRequiredMixin, UpdateView):
     template_name = "user/change.html"
     fields = ["detail", "avatar"]
     model = MyUser
-    success_url = '/user/profile'
+    success_url = "/user/profile"
 
     def get(self, request, *args, **kwargs):
         if int(self.request.get_full_path().split('/')[-1]) == request.user.pk:

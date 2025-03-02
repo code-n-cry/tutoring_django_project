@@ -34,7 +34,7 @@ class ArticleUpdateView(LoginRequiredMixin, UpdateView):
 
     def get(self, request, *args, **kwargs):
         current_post = models.Article.objects.filter(
-            id=int(self.request.get_full_path().split('/')[-2])
+            id=int(self.request.get_full_path().split("/")[-2])
         ).first()
         if current_post.author.pk == request.user.pk:
             self.object = current_post
@@ -51,7 +51,7 @@ class ArticleDeleteView(LoginRequiredMixin, DeleteView):
 
     def post(self, request, *args, **kwargs):
         current_post = models.Article.objects.filter(
-            id=int(self.request.get_full_path().split('/')[-2])
+            id=int(self.request.get_full_path().split("/")[-2])
         ).first()
         if current_post.author.pk == request.user.pk:
             return super().post(request, *args, **kwargs)

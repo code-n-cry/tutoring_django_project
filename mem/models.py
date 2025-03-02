@@ -19,8 +19,8 @@ def resize_image(image_field, max_width=300):
 
 
 class Article(models.Model):
-    title = models.CharField(max_length=200, verbose_name='Заголовок')
-    content = models.TextField(verbose_name='Содержание', null=False)
+    title = models.CharField(max_length=200, verbose_name="Заголовок")
+    content = models.TextField(verbose_name="Содержание", null=False)
     image = models.ImageField(
         upload_to="home_images/",
         null=True,
@@ -45,5 +45,5 @@ class Article(models.Model):
         return likes_id
 
     class Meta:
-        verbose_name = 'Статья'
-        verbose_name_plural = 'Статьи'
+        verbose_name = "Статья"
+        verbose_name_plural = "Статьи"
