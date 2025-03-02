@@ -10,12 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
-import os.path
 import os
+import os.path
 from pathlib import Path
 
 from django.conf.global_settings import MEDIA_ROOT, MEDIA_URL, STATICFILES_DIRS
-
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mem.apps.MemConfig',
     'user.apps.UserConfig',
+    'likes.apps.LikesConfig',
 ]
 
 MIDDLEWARE = [

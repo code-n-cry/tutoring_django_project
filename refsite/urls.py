@@ -17,18 +17,17 @@ Including another URLconf
 
 from cgitb import handler
 
-from django.contrib import admin
-from django.urls import path, include
-
 from django.conf import settings
 from django.conf.urls.static import static
-
+from django.contrib import admin
+from django.urls import include, path
 
 app_name = 'refsite'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('mem.urls', namespace='mem')),
     path('user/', include('user.urls', namespace='user')),
+    path('likes/', include('likes.urls', namespace='likes')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 if settings.DEBUG:

@@ -1,26 +1,51 @@
 {% include 'base.html' %}
+{% load static %}
 {% csrf_token %}
 
 <body>
 {% block content %}
-  <ul>
-    {% for post in posts %}
-        <div class="container">
-          <li>
-            <h2>{{ post.title }}</h2>
-            <p>{{ post.content }}</p>
-            {% if post.image %}
-                <div class="col-md-4 px-0">
-                    <img src="{{ post.image.url }}" class="img-thumbnail mw-30">
-                </div>
-            {% endif %}
-            <div class="d-flex align-items-center justify-content-left">
-              <p class="m-2"><a href="{% url 'mem:detail' post.id %}">Подробнее</a></p>
-              <p class="m-2"><a href="{% url 'user:detail' post.author.id %}">Автор статьи</a></p>
+    <ul>
+        {% for post in posts %}
+            <div class="container">
+                <li>
+                    <h2>{{ post.title }}</h2>
+                    <p>{{ post.content }}</p>
+                    {% if post.image %}
+                        <div class="col-md-4 px-0">
+                            <img src="{{ post.image.url }}" class="img-thumbnail mw-30">
+                        </div>
+                    {% endif %}
+                    <div class="d-flex align-items-center justify-content-left">
+                        <p class="m-2"><a href="{% url 'mem:detail' post.id %}">Подробнее</a></p>
+                        <p class="m-2"><a href="{% url 'user:detail' post.author.id %}">Автор статьи</a></p>
+                        {% if request.user.is_authenticated %}
+                            {% if request.user.pk in post.get_user_who_liked %}
+                                <button class="DislikedBtn d-flex align-items-center justify-content-left"
+                                        id="DislikedBtn_{{ post.pk }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                         class="bi bi-heart-fill m-2" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                              d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                                    </svg>
+                                    <p class="m-2" id="Likes_{{ post.pk }}">{{ post.get_user_who_liked|length }}</p>
+                                </button>
+                            {% else %}
+                                <button class="LikeBtn d-flex align-items-center justify-content-left"
+                                        id="LikedBtn_{{ post.pk }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" id="Like_{{ post.pk }}"
+                                         height="20"
+                                         fill="white" class="bi bi-heart m-2" viewBox="0 0 20 20">
+                                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+                                    </svg>
+                                    <p class="m-2" id="Likes_{{ post.pk }}">{{ post.get_user_who_liked|length }}</p>
+                                </button>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </li>
             </div>
-          </li>
-        </div>
-    {% endfor %}
-  </ul>
+        {% endfor %}
+    </ul>
 {% endblock %}
+<script src="{% static 'js/likes.js' %}"></script>
 </body>
