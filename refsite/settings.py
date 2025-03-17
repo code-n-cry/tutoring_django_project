@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import dj_database_url
 import os
 import os.path
 from pathlib import Path
@@ -18,16 +19,13 @@ from django.conf.global_settings import MEDIA_ROOT, MEDIA_URL, STATICFILES_DIRS
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 SECRET_KEY = (
-    "django-insecure-p9ront1jw$x!2632%h+w_fvu3=pqp04syqstz=v8%+if-sf49n"
+    os.getenv("SECRET_KEY")
 )
 
-
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["127.0.0.1", "tea-project.onrender.com", "0.0.0.0"]
-
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -43,6 +41,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -71,14 +70,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "refsite.wsgi.application"
 
-
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    'default': dj_database_url.config(
+        default=os.getenv("DATABASE_URL"),
+        conn_max_age=600
+    )
 }
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -115,10 +112,13 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 STORAGES = "backend.settings.DefaultStorageClass"
 THUMBNAIL_ENGINE = "sorl.thumbnail.engines.convert_engine.Engine"
+
+if not DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
