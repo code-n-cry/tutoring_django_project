@@ -23,7 +23,7 @@ SECRET_KEY = (
     os.getenv("SECRET_KEY")
 )
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["127.0.0.1", "tea-project.onrender.com", "0.0.0.0"]
 
@@ -125,7 +125,6 @@ STORAGES = {
     },
 }
 THUMBNAIL_ENGINE = "sorl.thumbnail.engines.convert_engine.Engine"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-if not DEBUG:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
