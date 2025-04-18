@@ -25,7 +25,7 @@ SECRET_KEY = (
 
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "tea-project.onrender.com", "0.0.0.0"]
+ALLOWED_HOSTS = ["127.0.0.1", "tea-forum.onrender.com", "0.0.0.0"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
